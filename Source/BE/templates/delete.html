@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thêm hoặc Xóa Học Sinh</title>
+</head>
+<body>
+    <h1>Thêm hoặc Xóa Học Sinh</h1>
+    
+    <form method="POST" action="/delete">
+        <input type="text" id="name" name="name" placeholder="Name" required><br><br>
+        <input type="submit" value="Delete">
+    </form>
+    {% if show_popup_1 %}
+    <div id="delete-success-message" style="display: block;">
+        Dữ liệu đã được xóa thành công!
+    </div>
+    {% else %}
+    <div id="delete-success-message" style="display: none;">
+        Dữ liệu đã được xóa thành công!
+    {% endif %}
+    </div>
+    {% if show_popup_1 %}
+    <script>
+        // JavaScript để hiển thị hoặc ẩn popup
+        
+        setTimeout(function() {
+            document.getElementById("delete-success-message").style.display = "none";
+        }, 2000); // 3 giây sau đó ẩn popup
+    </script>
+    {% endif %}
+
+    {% if show_popup_2 %}
+    <div id="delete-error-message" style="display: block;">
+        Dữ liệu xóa không thành công!
+    </div>
+    {% else %}
+    <div id="delete-error-message" style="display: none;">
+        Dữ liệu xóa không thành công!
+    {% endif %}
+    </div>
+    {% if show_popup_2 %}
+    <script>
+        // JavaScript để hiển thị hoặc ẩn popup
+        
+        setTimeout(function() {
+            document.getElementById("delete-error-message").style.display = "none";
+        }, 2000); // 3 giây sau đó ẩn popup
+    </script>
+    {% endif %}
+</body>
+</html>

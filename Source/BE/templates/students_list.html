@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Danh sách sinh viên</title>
+</head>
+<body>
+    <h1>Danh sách sinh viên</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Năm sinh</th>
+            <th>Lớp</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.birth_year }}</td>
+            <td>{{ student.class_name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
