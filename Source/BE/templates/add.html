@@ -6,43 +6,28 @@
 </head>
 <body>
     <h1>Danh sách sinh viên</h1>
-
+    {% if notice%}
+    <script>
+        function showAlert() {
+            var alertSuccessMessage = "Them thanh cong";
+            var alertErrorMessage = "Them khong thanh cong";
+            var notice = "{{notice}}"
+            if (notice==="1"){
+                alert(alertSuccessMessage);
+            }else{
+                alert(alertErrorMessage);
+            }
+        }
+        </script>
+    {% endif %}
     <!-- Form thêm sinh viên -->
     <form method="POST" action="/add">
         <input type="text" name="name" placeholder="Name" required>
         <input type="number" name="birth_year" placeholder="Birth Year" required>
         <input type="text" name="class_name" placeholder="Class Name" required>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" onclick="showAlert()">
     </form>
 
-    <!-- Form sửa sinh viên -->
-    <div id="editStudentForm" style="display: none;">
-        <h2>Sửa sinh viên</h2>
-        <input type="hidden" id="editId">
-        <label for="editName">Tên:</label>
-        <input type="text" id="editName" required>
-        <label for="editBirthYear">Năm sinh:</label>
-        <input type="number" id="editBirthYear" required>
-        <label for="editClassName">Lớp:</label>
-        <input type="text" id="editClassName" required>
-        <button id="updateStudent">Cập nhật</button>
-        <button id="cancelEdit">Hủy</button>
-    </div>
-
-    <!-- Form tìm kiếm và sắp xếp -->
-    <form id="searchForm">
-        <label for="searchName">Tìm kiếm theo tên:</label>
-        <input type="text" id="searchName">
-        <label for="sortBy">Sắp xếp theo:</label>
-        <select id="sortBy">
-            <option value="id">ID</option>
-            <option value="name">Tên</option>
-            <option value="birth_year">Năm sinh</option>
-            <option value="class_name">Lớp</option>
-        </select>
-        <button type="submit">Tìm kiếm và sắp xếp</button>
-    </form>
-
-    <script src="main.js"></script>
+    <!-- <script src="main.js"></script> -->
 </body>
 </html>

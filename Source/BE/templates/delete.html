@@ -1,51 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Thêm hoặc Xóa Học Sinh</title>
+    <title>Delete data</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/delete.css')}}">
 </head>
+
 <body>
-    <h1>Thêm hoặc Xóa Học Sinh</h1>
-    
+    <h1>Delete data</h1>
+
+    {% if notice%}
+    <script>
+        function showAlert() {
+            var alertSuccessMessage = "Deleted";
+            var alertErrorMessage = "Error";
+            var notice = "{{notice}}"
+            if (notice === "1") {
+                alert(alertSuccessMessage);
+            } else {
+                alert(alertErrorMessage);
+            }
+        }
+    </script>
+    {% endif %}
     <form method="POST" action="/delete">
         <input type="text" id="name" name="name" placeholder="Name" required><br><br>
-        <input type="submit" value="Delete">
+        <input type="submit" value="Delete" onclick="showAlert()">
     </form>
-    {% if show_popup_1 %}
-    <div id="delete-success-message" style="display: block;">
-        Dữ liệu đã được xóa thành công!
-    </div>
-    {% else %}
-    <div id="delete-success-message" style="display: none;">
-        Dữ liệu đã được xóa thành công!
-    {% endif %}
-    </div>
-    {% if show_popup_1 %}
-    <script>
-        // JavaScript để hiển thị hoặc ẩn popup
-        
-        setTimeout(function() {
-            document.getElementById("delete-success-message").style.display = "none";
-        }, 2000); // 3 giây sau đó ẩn popup
-    </script>
-    {% endif %}
-
-    {% if show_popup_2 %}
-    <div id="delete-error-message" style="display: block;">
-        Dữ liệu xóa không thành công!
-    </div>
-    {% else %}
-    <div id="delete-error-message" style="display: none;">
-        Dữ liệu xóa không thành công!
-    {% endif %}
-    </div>
-    {% if show_popup_2 %}
-    <script>
-        // JavaScript để hiển thị hoặc ẩn popup
-        
-        setTimeout(function() {
-            document.getElementById("delete-error-message").style.display = "none";
-        }, 2000); // 3 giây sau đó ẩn popup
-    </script>
-    {% endif %}
+    <button type="submit"
+        style="background-color: aqua; font-family: 'Courier New', monospace;padding: 10px;margin: 5px;border: none;color: #0F0;"><a
+            href="/">Trang chu</a></button>
 </body>
+
 </html>

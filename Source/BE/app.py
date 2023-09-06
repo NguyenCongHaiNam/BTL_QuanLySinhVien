@@ -34,9 +34,9 @@ def students():
             new_student = Student(name=name, birth_year=birth_year, class_name=class_name)
             db.session.add(new_student)
             db.session.commit()
-            return jsonify({'message': 'success'}), 200
+            return render_template("add.html", notice="1")
         else:
-            return jsonify({'error': 'Name, birth year, and class name are required'}), 400
+            return render_template("add.html", notice="0")
     return render_template("add.html")
 
 @app.route('/students_list', methods=['GET'])
@@ -51,14 +51,35 @@ def delete_student():
         name = request.form.get('name')
         student = Student.query.filter_by(name=name).first()
         if not student:
-            return render_template("delete.html", show_popup_2=True)
+            return render_template("delete.html", notice="0")
         else:
             db.session.delete(student)
             db.session.commit()
-            return render_template("delete.html", show_popup_1=True)
+            return render_template("delete.html", notice="1")
     return render_template("delete.html")
 
-# # app.py
+@app.route('/edit', methods=['POST', 'GET'])
+def edit_student():
+    students = Student.query.all()
+    if request.method=='POST':
+        # student_id = request.form.get('id')
+        student_id = 1
+        name = request.form.get('name')
+        birth_year = request.form.get('birth_year')
+        class_name = request.form.get('clas')
+
+        student = Student.query.get(student_id)
+
+        if student:
+            student.name = name
+            student.birth_year = birth_year
+            student.class_name = class_name
+            db.session.commit()
+            return render_template('edit.html' , notice="1")
+        else:
+            return render_template('edit.html' , notice="0")
+    return render_template("edit.html")
+
 
 # @app.route('/api/students', methods=['GET'])
 # def sort_students():

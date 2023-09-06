@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit data</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <h1>Edit data</h1>
+    {% if notice%}
+    <script>
+        function showAlert() {
+            var alertSuccessMessage = "Sua thanh cong";
+            var alertErrorMessage = "Sua khong thanh cong";
+            var notice = "{{notice}}"
+            if (notice==="1"){
+                alert(alertSuccessMessage);
+            }else{
+                alert(alertErrorMessage);
+            }
+        }
+        </script>
+    {% endif %}
+    <form action="/edit" method="POST">
+        <div class="form-container" id="id">
+            <input type="text" id="id" name="id" placeholder="ID" required><br><br>
+        </div>
+    </form>
+    <label>
+        <input type="checkbox" id="nameCheckbox"> Edit name
+    </label>
+    
+    <label>
+        <input type="checkbox" id="birth_yearCheckbox"> Edit birth_year
+    </label>
+    
+    <label>
+        <input type="checkbox" id="clasCheckbox"> Edit class
+    </label>
+
+    <!-- Form 1 -->
+    <form action="/edit" method="POST">
+        <div class="form-container" id="name" name="name">
+            <input type="text" id="name" name="name" placeholder="Name" required><br><br>
+        </div>
+    </form>
+
+    <!-- Form 2 -->
+    <form action="/edit" method="POST">
+        <div class="form-container" id="birth_year" name="birth_year">
+            <input type="text" id="name" name="name" placeholder="Birth_year" required><br><br>
+        </div>
+    </form>
+    
+    <!-- Form 3 -->
+    <form action="/edit" method="POST">
+        <div class="form-container" id="clas" name="clas">
+            <input type="text" id="name" name="name" placeholder="Class" required><br><br>
+        </div>
+    </form>
+    <form action="/edit" method="POST">
+        <div class="submit" id="submit">
+            <input type="submit" value="Edit" onclick="showAlert()">
+        </div>
+    </form>
+
+    <script>
+        // JavaScript để hiển thị hoặc ẩn các form khi checkbox được chọn/deselect
+        const nameCheckbox = document.getElementById('nameCheckbox');
+        const birth_yearCheckbox = document.getElementById('birth_yearCheckbox');
+        const clasCheckbox = document.getElementById('clasCheckbox');
+        const name = document.getElementById('name');
+        const birth_year = document.getElementById('birth_year');
+        const clas = document.getElementById('clas');
+        name.style.display = 'none'
+        birth_year.style.display = 'none'
+        clas.style.display = 'none'
+        nameCheckbox.addEventListener('change', () => {
+            name.style.display = nameCheckbox.checked ? 'block' : 'none';
+        });
+
+        birth_yearCheckbox.addEventListener('change', () => {
+            birth_year.style.display = birth_yearCheckbox.checked ? 'block' : 'none';
+        });
+
+        clasCheckbox.addEventListener('change', () => {
+            clas.style.display = clasCheckbox.checked ? 'block' : 'none';
+        });
+    </script>
+    <button type="submit"
+    style="background-color: aqua; font-family: 'Courier New', monospace;padding: 10px;margin: 5px;border: none;color: #0F0;"><a
+        href="/">Trang chu</a></button>
+</body>
+</html>
